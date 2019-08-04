@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="project.css">
+    <meta charset="utf-8"><meta name="author" content="Terry-Ann Sneed">
+    <meta name="description" content="CS350 Summer 2019">
+    <title>CS350: PROJECT</title>
+</head>
+<body background = "./photos/background.jpg" unload="rectangleExamples();">
+
+  
+
+<div class="header">
+  <h1>CS 350: Project</h1>
+</div>
+
+<div class="topnav">
+  <a href="./index.html">BIO</a>
+  <a href="./schedule.html">SCHEDULE</a>
+  <a href="./photos.html">PHOTOS</a>
+  <a href="./videos.html">VIDEOS</a>
+  <a href="./comments.html">COMMENTS</a>
+  <a href="./game.html">GAME</a>
+  <a href="./music.html" style="float:right">MUSIC</a>
+</div>
+
+<div class="row">
+  <div class="leftcolumn">
+    <div class="card">
+      <p><div class="game_2">
+
+            
+              <canvas id="myCanvas" width="930" height="500" onclick="init()" style="border:5px solid thistle;">
+                    Your browser does not support the HTML5 canvas tag.
+                
+              </canvas>
+
+              <script>
+                var canvas = document.getElementById("myCanvas");
+                var ctx = canvas.getContext("2d");
+                ctx.font = "30px Arial";
+                ctx.fillStyle = 'black';
+                ctx.fillText("Please click within this box,", 120, 200);
+                ctx.fillText("and see the shape transformation magic happen", 120, 270);
+
+
+                function clear_canvas_rectangle (){
+                  var canvas = document.getElementById("myCanvas");
+                  var ctx = canvas.getContext("2d");
+                  ctx.clearRect (0, 0, 930, 500);
+                }// end clear_canvas_rectangle()
+               // ************************************************************************
+               function getRandomColor() {
+                  var characters = "0123456789ABCDEF";
+                  var color = '#';
+
+                  for (var i = 0; i < 6; i++) {
+                    color += characters[getRandomNumber(0, 15)];
+                  }
+                  
+                  return color;
+                }// end getRandomColor()
+                 // ************************************************************************
+              function getRandomNumber(low, high) {
+                var r = Math.floor(Math.random() * (high - low + 1)) + low;
+                return r;
+              }// end getRandomNumber()
+              // ************************************************************************
+              function xCoord(event) {
+                  var canvas = document.getElementById("myCanvas");
+                  var ctx = canvas.getContext("2d");
+                  var x = event.clientX;
+                  return x;
+                }// end xCoord()
+                // ************************************************************************
+                function yCoord(event) {
+                  var canvas = document.getElementById("myCanvas");
+                  var ctx = canvas.getContext("2d");
+                  var y = event.clientY;
+                  return y;
+                }// end yCoord()
+                // ************************************************************************
+                function showCoords(event) {
+                  var canvas = document.getElementById("myCanvas");
+                  var ctx = canvas.getContext("2d");
+                  var x = event.clientX;
+                  var y = event.clientY;
+                  var coords = "X coords: " + x + ", Y coords: " + y;
+                  document.getElementById("demo").innerHTML = coords;
+                }// end showCoords()
+
+                // ************************************************************************
+               
+                function Circle(x, y, r){
+                  this.x=x;
+                  this.y=y;
+                  this.r=r;
+                }// end Circle()
+                // ************************************************************************
+               
+                function drawBall(c) {
+                  
+                  var shapes = new Array('rectangle', 'circle', 'triangle', 'heart');
+                  var shape = shapes[getRandomNumber(0, 3)];
+
+                   if(shape == 'circle') {
+
+                    ctx.arc(c.x, c.y, 50, 0, 2 * Math.PI);
+                    ctx.fill();
+                    ctx.fillStyle = getRandomColor();
+                  }
+
+                  else if(shape == 'rectangle') {
+                    ctx.fillRect((c.x) - 100, (c.y) - 50, 200, 100);
+                    ctx.beginPath();
+                    ctx.fill();
+                    ctx.fillStyle = getRandomColor();
+                  }
+
+                   else if(shape == 'triangle') {
+
+                      ctx.beginPath();
+                      ctx.arc(75 + 385, 75 + 185, 50, 0, Math.PI * 2, true); // Outer circle
+                      ctx.moveTo(110 + 385, 75 + 185);
+                      ctx.arc(75 + 385, 75 + 185, 35, 0, Math.PI, false);  // Mouth (clockwise)
+                      ctx.moveTo(65 + 385, 65 + 185);
+                      ctx.arc(60 + 385, 65 + 185, 5, 0, Math.PI * 2, true);  // Left eye
+                      ctx.moveTo(95 + 385, 65 + 185);
+                      ctx.arc(90 + 385, 65 + 185, 5, 0, Math.PI * 2, true);  // Right eye
+                      ctx.stroke();
+                      ctx.fillStyle = getRandomColor();
+                  }
+
+
+                  else if(shape == 'heart') {
+                      var arr = [];
+
+                      var center = {x: c.x, y: c.y};
+
+                      var start = 0;
+                      var stop = Math.PI * 2; 
+
+                      var resolution = 60; 
+                      var step = stop/resolution; 
+                      ctx.beginPath();
+                      for(var i = 0; i < resolution+1; i++) {
+                        var angle = step * i;
+                        var r = 50 + 50 * Math.sin(angle);
+                        var point = {
+                          x: center.x + r * Math.cos(angle),
+                          y: center.y + r * Math.sin(angle)
+                        }
+                        if(i !== 0) ctx.lineTo(point.x, point.y); 
+                        else ctx.moveTo(point.x, point.y); 
+                        arr.push(point); 
+                      }
+
+                      ctx.stroke();
+                      ctx.fill();
+                      ctx.fillStyle = getRandomColor();
+                      }
+                } // end drawBall()
+             
+
+                  var circle = new Circle(460, 260, 30);
+            
+                function init() {
+                  showCoords(event);
+                  //window.addEventListener("click",drawBall,false);
+                  var canvas = document.getElementById("myCanvas");
+                  var ctx = canvas.getContext("2d");
+                  
+                  var timer;
+                  drawBall(circle); 
+                  //drawBall(circle2); 
+                  //barImg=document.getElementById("bar");
+                  //canvas = document.getElementById("myCanvas");
+                 //ctx = canvas.getContext("2d");
+
+
+                  var timer=setInterval(draw, 250);
+                  return timer;
+                }
+                function draw() {
+                  ctx.clearRect(0, 0, canvas.width, canvas.height);
+                  ctx.fillStyle = 'white';
+                  ctx.fillRect(0,0,canvas.width,canvas.height);
+                  ctx.fillStyle = getRandomColor();
+                  drawBall(circle);
+                  }
+                
+
+              </script>
+
+              <form onsubmit='return false;'>
+                <input type='submit' value='START' onclick='clear_canvas_rectangle()' style="color: black; background-color:thistle"> 
+              </form>
+
+              <p id="demo"></p>
+
+            <br>
+          </div>
+          </p>
+          </div>
+  </div>
+  <div class="rightcolumn">
+    <div class="card">
+      <div class="profile" style="height:260px;">
+        <img src="./photos/profile.jpg" width="260" height="255" title="Profile Picture" alt="Profile"></div>
+    </div>
+    <div class="card">
+      <div class="quote">"The walls between art and engineering exist only in our minds."<br><br>
+        -Theo Jansen</div>
+    </div>
+    <div class="card">
+      <div class="footer">
+        <strong><a href="#top">BACK TO TOP</a></strong>
+      </div>
+  </div>
+</div>
+
+</body>
+</html>

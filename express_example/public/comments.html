@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="project.css">
+    <meta charset="utf-8"><meta name="author" content="Terry-Ann Sneed">
+    <meta name="description" content="CS350 Summer 2019">
+    <title>CS350: PROJECT</title>
+
+    <script>
+      function Email(event) {
+        event.preventDefault(); 
+        var form = document.getElementById("myForm");
+        var firstName, lastName, email, comments;
+        var text = ""; 
+  
+        firstName = form.elements["firstName"].value;
+        lastName = form.elements["lastName"].value;
+
+        text = "Thank you for your submition, " + firstName + " " + lastName + "!";
+        text += "\nYour information is being processed, and a confirmation email has been sent!"
+        alert(text);
+        form.submit();
+      } // end Email
+
+
+        function Field(element, field) {
+           if (element.type == "email") {
+              if (!element.Validate()) {
+                alert("\"Email Address\" is a required field and must be a valid email");
+                return false;
+              }
+            }
+            else if (element.type == "phone") {
+              if (!element.Validate()) {
+                alert("\"Phone Number\" must be in the form of xxx-xxx-xxxx");
+                return false;
+              }
+            }
+            else {
+              if (!element.Validate()) {
+                alert(field + " is a required field");
+                return false;
+              }
+            }
+          return true;
+          } // end Field
+
+    </script>
+
+</head>
+<body background = "./photos/background.jpg">
+
+<div class="header">
+  <h1>CS 350: Project</h1>
+</div>
+
+<div class="topnav">
+  <a href="./index.html">BIO</a>
+  <a href="./schedule.html">SCHEDULE</a>
+  <a href="./photos.html">PHOTOS</a>
+  <a href="./videos.html">VIDEOS</a>
+  <a href="./comments.html">COMMENTS</a>
+  <a href="./game.html">GAME</a>
+  <a href="./music.html" style="float:right">MUSIC</a>
+</div>
+
+<div class="row">
+  <div class="leftcolumn">
+    <div class="card">
+      <p><div class="comments">
+         
+        <form  action="/contact" id="myForm" class="myForm" method="POST" onsubmit="Email(event);">
+          <label for="firstName">First Name:</label>
+          <input type="text" id="firstName" name="firstName" placeholder="Your first name" required 
+                  onfocusout="Field(this.form.elements['firstName'], 'First Name');"><br>
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" name="lastName"placeholder="Your last name" required 
+                  onfocusout="Field(this.form.elements['lastName'], 'Last Name');"><br>
+          <label for="email">Email Address</label><br><br>
+          <input type="email" id="email" name="email" placeholder="Your email address" style="height:40px" size="125" required
+                  onfocusout="Field(this.form.elements['email'], 'Email address');"><br><br>
+          <label for="phone">Telephone Number</label><br><br>
+          <input type="tel" id="phone" name="phone" placeholder="Your telephone number (xxx-xxx-xxxx)"
+                  onfocusout="Field(this.form.elements['phone'], 'Telephone number');" style="height:40px" size="125" pattern="^[0-9]{3}-[0-9]{3}-[0-9]{4}$"><br><br>
+          <label for="comment">Comment</label><br>
+          <textarea id="comment" name="comment" style="height:200px" required 
+                  onfocusout="Field(this.form.elements['comment'], 'Message');"></textarea>
+          <br>
+          <br>
+          <input class="button" type="submit" value="Send">
+      </form>
+
+
+
+
+            </p>
+          </div>
+        </div>
+  </div>
+  <div class="rightcolumn">
+    <div class="card">
+      <div class="profile" style="height:260px;">
+        <img src="./photos/profile.jpg" width="260" height="255" title="Profile Picture" alt="Profile"></div>
+    </div>
+    <div class="card">
+      <div class="quote">"The walls between art and engineering exist only in our minds."<br><br>
+        -Theo Jansen</div>
+    </div>
+    <div class="card">
+      <div class="footer">
+        <strong><a href="#top">BACK TO TOP</a></strong>
+      </div>
+  </div>
+</div>
+
+</body>
+</html>

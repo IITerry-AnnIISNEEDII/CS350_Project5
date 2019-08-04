@@ -1,0 +1,157 @@
+/*Name: Terry-Ann Sneed*/
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial;
+  padding: 10px;
+}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+ #square {
+      width: 150px;
+      height: 150px;
+      border-radius: 5px;
+      background-color: #CCC;
+      transition: background-color 1s ease-in-out;
+      animation: colorTimer 2s infinite;
+    }
+
+.game {
+  color: black;
+  text-align: center;
+  background-color: thistle;
+  padding: 200px;
+  margin-top: 5px;
+  font-size: 30px;
+  text-decoration: overline;
+}
+
+.header {
+  padding: 20px;
+  text-align: center;
+  background: thistle;
+}
+
+.header h1 {
+  font-size: 30px;
+  color: black;
+}
+
+.bio_text{
+  text-align: center;
+  font-size: 20px;
+  color: purple;
+}
+
+.quote{
+  font-size: 15px;
+  color: purple;
+  font-style: italic;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: white;
+}
+
+.photos {
+  font: Arial;
+  font-size: 18px;
+  text-align: center;
+  color: black;
+  background-color: thistle; 
+  float: center;
+  text-decoration: overline;
+}
+
+.videos {
+  font: Arial;
+  font-size: 18px;
+  text-align: center;
+  color: black;
+  background-color: thistle; 
+  float: center;
+  text-decoration: overline;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: purple;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.topnav a:hover {
+  background-color: thistle;
+  color: black;
+}
+
+.leftcolumn {   
+  float: left;
+  width: 75%;
+}
+
+.rightcolumn {
+  float: left;
+  width: 25%;
+  background-color: thistle;
+  padding-left: 20px;
+}
+
+.bio_img {
+  background-color: thistle;
+  width: 100%;
+  padding: 20px;
+}
+
+.card {
+  background-color: white;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.footer {
+  font-size: 10px;
+  padding: 10px;
+  text-align: center;
+  background: thistle;
+  margin-top: 10px;
+}
+
+.comments {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.music {
+  text-align: center;
+}
